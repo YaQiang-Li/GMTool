@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Window>
+    <HorizontalLayout inset="1,1,1,1">
+        <VerticalLayout width="200" inset="1,1,1,1">
+            <List name="accountslist" bkcolor="#7F7F7F7F" inset="0,0,0,0" itemshowhtml="true" bordercolor="#FF768D9B" bordersize="1" vscrollbar="true" hscrollbar="true" headerbkimage="file='list_header_bg.png'" itemalign="center" itembkcolor="#FFE2DDDF" itemaltbk="true" hscrollbar="false" menu="true">
+    			<ListHeader height="24" menu="true">
+    				<ListHeaderItem text="注册帐号" font="1" textcolor="#3385FF" width="85" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+    				<ListHeaderItem text="角色名称" font="1" textcolor="#3385FF" width="*" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+    			</ListHeader>
+    		</List>
+            <HorizontalLayout height="25">
+                <Button name="refleshAccounts" text="立即刷新" textcolor="#000000" hottextcolor="#FFFFFF" focusedtextcolor="#000000" pushedtextcolor="#77a8de" normalimage="file='btn.png' corner='5,11,5,11' source='0,0,96,24'" hotimage="file='btn.png' corner='5,11,5,11' source='0,24,96,48'" pushedimage="file='btn.png' corner='5,11,5,11' source='0,48,96,72'" disabledimage="file='btn.png' corner='5,11,5,11' source='0,72,96,96'"/>
+            </HorizontalLayout>
+        </VerticalLayout>
+
+        <VerticalLayout>
+            <HorizontalLayout height="25" inset="1,1,0,0">
+                <Edit name="searchEdit" textcolor="#7F7F7F7F" width="400" text="用户名/角色名/物品ID/物品名称" bordersize="1" bordercolor="#FF768D9B"/>
+                <Button name="searchButton" text="Search" textcolor="#000000" hottextcolor="#FFFFFF" focusedtextcolor="#000000" pushedtextcolor="#77a8de" normalimage="file='btn.png' corner='5,11,5,11' source='0,0,96,24'" hotimage="file='btn.png' corner='5,11,5,11' source='0,24,96,48'" pushedimage="file='btn.png' corner='5,11,5,11' source='0,48,96,72'" disabledimage="file='btn.png' corner='5,11,5,11' source='0,72,96,96'"/>
+                <Button name="searchNextButton" text="Next" textcolor="#000000" hottextcolor="#FFFFFF" focusedtextcolor="#000000" pushedtextcolor="#77a8de" normalimage="file='btn.png' corner='5,11,5,11' source='0,0,96,24'" hotimage="file='btn.png' corner='5,11,5,11' source='0,24,96,48'" pushedimage="file='btn.png' corner='5,11,5,11' source='0,48,96,72'" disabledimage="file='btn.png' corner='5,11,5,11' source='0,72,96,96'"/>
+            </HorizontalLayout>
+
+            <HorizontalLayout inset="20,20,20,20">
+                <List name="itemslist" bkcolor="#FFFFFFFF" inset="0,0,0,0" itemshowhtml="true" bordercolor="#FF768D9B" bordersize="1" vscrollbar="true" hscrollbar="true" headerbkimage="file='list_header_bg.png'" itemalign="center" itembkcolor="#FFE2DDDF" itemaltbk="true" hscrollbar="false" menu="true">
+        			<ListHeader height="24" menu="true">
+        				<ListHeaderItem text="序号" font="0"  width="45" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+        				<ListHeaderItem text="ID" font="0"  width="45" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+                        <ListHeaderItem text="名称" font="0" textcolor="#0" width="*" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+        				<ListHeaderItem text="数量" font="0" textcolor="#0" width="45" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+        			</ListHeader>
+        		</List>
+
+                <VerticalLayout bkcolor="#FFD2D2D2" inset="10,10,10,10">
+                    <HorizontalLayout height="25" padding="2,2,2,2">
+                        <Text text="用户名:" width="60" padding="0,5,0,0"/>
+                        <Edit name="accountEdit" textcolor="#7F7F7F7F" width="*" text="用户名" bordersize="1" bordercolor="#FF768D9B"/>
+                    </HorizontalLayout>
+                    <HorizontalLayout height="25" padding="2,2,2,2">
+                        <Text text="角色名:" width="60" padding="0,5,0,0"/>
+                        <Text name="playerName" text="角色名" textcolor="#7F7F7F7F" width="*" padding="0,5,0,0"/>
+                    </HorizontalLayout>
+
+                    <HorizontalLayout />
+                    <Button name="sendVItems" height="40" text="SEND" font="5" padding="2,2,2,2" textcolor="#FF0000" hottextcolor="#FFFFFF" focusedtextcolor="#000000" pushedtextcolor="#77a8de" normalimage="file='btn.png' corner='5,11,5,11' source='0,0,96,24'" hotimage="file='btn.png' corner='5,11,5,11' source='0,24,96,48'" pushedimage="file='btn.png' corner='5,11,5,11' source='0,48,96,72'" disabledimage="file='btn.png' corner='5,11,5,11' source='0,72,96,96'"/>
+
+                    <Button name="modelSetting" height="40" text="Model Setting" font="5" padding="2,2,2,2" textcolor="#000000" hottextcolor="#FFFFFF" focusedtextcolor="#000000" pushedtextcolor="#77a8de" normalimage="file='btn.png' corner='5,11,5,11' source='0,0,96,24'" hotimage="file='btn.png' corner='5,11,5,11' source='0,24,96,48'" pushedimage="file='btn.png' corner='5,11,5,11' source='0,48,96,72'" disabledimage="file='btn.png' corner='5,11,5,11' source='0,72,96,96'"/>
+                    <Button name="sendHistory" height="40" text="History" font="5" padding="2,2,2,2" textcolor="#000000" hottextcolor="#FFFFFF" focusedtextcolor="#000000" pushedtextcolor="#77a8de" normalimage="file='btn.png' corner='5,11,5,11' source='0,0,96,24'" hotimage="file='btn.png' corner='5,11,5,11' source='0,24,96,48'" pushedimage="file='btn.png' corner='5,11,5,11' source='0,48,96,72'" disabledimage="file='btn.png' corner='5,11,5,11' source='0,72,96,96'"/>
+                </VerticalLayout>
+            </HorizontalLayout>
+
+        </VerticalLayout>
+
+        <VerticalLayout width="200" inset="1,1,1,1">
+            <List name="itemslist" bkcolor="#7F7F7F7F" inset="0,0,0,0" itemshowhtml="true" bordercolor="#FF768D9B" bordersize="1" vscrollbar="true" hscrollbar="true" headerbkimage="file='list_header_bg.png'" itemalign="center" itembkcolor="#FFE2DDDF" itemaltbk="true" hscrollbar="false" menu="true">
+    			<ListHeader height="24" menu="true">
+    				<ListHeaderItem text="物品ID" font="1" textcolor="#3385FF" width="60" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+    				<ListHeaderItem text="物品名称" font="1" textcolor="#3385FF" width="*" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+    			</ListHeader>
+    		</List>
+        </VerticalLayout>
+    </HorizontalLayout>
+</Window>

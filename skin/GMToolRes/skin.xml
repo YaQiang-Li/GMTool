@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window size="1000,715">
+  <Font id="0" name="宋体" size="13" bold="true" />
+  <Font id="1" name="微软雅黑" size="12" bold="true" />
+  <Font id="2" name="宋体" size="12" />
+  <Font id="3" name="宋体" size="14" bold="true" />
+  <Font id="4" name="宋体" size="22" bold="true" italic="true"/>
+  <Font id="5" name="宋体"  size="22" bold="true" />
+  <VerticalLayout bkcolor="#FFD1E8F5" bkcolor2="#FFC6E0F1" bordercolor="#FF768D9B" bordersize="1" borderround="5,5" inset="1,0,1,0">
+    <HorizontalLayout height="24">
+      <HorizontalLayout>
+        <Container width="22" height="22" bkimage="file='icon.png' source='0,0,16,16' dest='5,4,21,20' " />
+        <Text text="情义三国GM工具" pos="22, 5, 200, 24" float="true" textcolor="#FF447AA1" font="0" />
+      </HorizontalLayout>
+      <HorizontalLayout width="100" inset="0,1,0,0">
+        <Button name="menubtn" maxwidth="40" maxheight="20" normalimage="file='sys_dlg_menu.png' source='52,0,78,17'" hotimage="file='sys_dlg_menu.png' source='26,0,52,17'" pushedimage="file='sys_dlg_menu.png' source='0,0,26,17'"/>
+        <Button name="minbtn" maxwidth="40" maxheight="20" normalimage="file='sys_dlg_min.png' source='52,0,78,17'" hotimage="file='sys_dlg_min.png' source='26,0,52,17'" pushedimage="file='sys_dlg_min.png' source='0,0,26,17'"/>
+        <Button name="maxbtn" visible="flase" maxwidth="26" maxheight="17" normalimage="file='sys_dlg_max.png' source='52,0,78,17'" hotimage="file='sys_dlg_max.png' source='26,0,52,18'" pushedimage="file='sys_dlg_max.png' source='0,0,26,17'"/>
+        <Button name="closebtn" maxwidth="40" maxheight="20" normalimage="file='sys_dlg_close.png' source='90,0,135,17'" hotimage="file='sys_dlg_close.png' source='45,0,90,17'" pushedimage="file='sys_dlg_close.png' source='0,0,45,17'"/>
+      </HorizontalLayout>
+    </HorizontalLayout>
+    <HorizontalLayout height="26" bkcolor="#FF97C0DA" bkcolor2="#FFB8DFF2">
+      <Option pos="6, 0, 84, 26" float="true" text="虚宝发放" name="vitmes" textcolor="#FF386382" font="2" normalimage="tabbar_normal.png" hotimage="tabbar_hover.png" pushedimage="tabbar_pushed.png" selectedimage="tabbar_pushed.png" group="contenttab"  selected="true"/>
+      <Option pos="86, 0, 164, 26" float="true" text="玩家管理" name="accounts" textcolor="#FF386382" font="2" normalimage="tabbar_normal.png" hotimage="tabbar_hover.png" pushedimage="tabbar_pushed.png" selectedimage="tabbar_pushed.png" group="contenttab"/>
+      <Option pos="166, 0, 244, 26" float="true" text="VIP服务" name="vip" textcolor="#FF386382" font="2" normalimage="tabbar_normal.png" hotimage="tabbar_hover.png" pushedimage="tabbar_pushed.png" selectedimage="tabbar_pushed.png" group="contenttab"/>
+      <Option pos="246, 0, 324, 26" float="true" text="赤壁奖励" name="cb_reward" textcolor="#FF386382" font="2" normalimage="tabbar_normal.png" hotimage="tabbar_hover.png" pushedimage="tabbar_pushed.png" selectedimage="tabbar_pushed.png" group="contenttab"/>
+      <Option pos="326, 0, 404, 26" float="true" text="国战英雄" name="cwar_hero_reward" textcolor="#FF386382" font="2" normalimage="tabbar_normal.png" hotimage="tabbar_hover.png" pushedimage="tabbar_pushed.png" selectedimage="tabbar_pushed.png" group="contenttab"/>
+      <Option pos="406, 0, 484, 26" float="true" text="国战军团" name="cwar_group_reward" textcolor="#FF386382" font="2" normalimage="tabbar_normal.png" hotimage="tabbar_hover.png" pushedimage="tabbar_pushed.png" selectedimage="tabbar_pushed.png" group="contenttab"/>
+      <Option pos="486, 0, 564, 26" float="true" text="摆摊奖励" name="pitch_reward" textcolor="#FF386382" font="2" normalimage="tabbar_normal.png" hotimage="tabbar_hover.png" pushedimage="tabbar_pushed.png" selectedimage="tabbar_pushed.png" group="contenttab"/>
+      <Option pos="566, 0, 644, 26" float="true" text="高级工具" name="tools" textcolor="#FF386382" font="2" normalimage="tabbar_normal.png" hotimage="tabbar_hover.png" pushedimage="tabbar_pushed.png" selectedimage="tabbar_pushed.png" group="contenttab"/>
+    </HorizontalLayout>
+    <HorizontalLayout height="1">
+      <Control width="1"/>
+      <HorizontalLayout bkcolor="#FF97C0DA" bkcolor2="#FFB8DFF2"></HorizontalLayout>
+      <Control width="1"/>
+    </HorizontalLayout>
+    <Control height="1" bkcolor="#FFB8DFF2"/>
+    <HorizontalLayout>
+      <Control width="5"/>
+      <HorizontalLayout bkcolor="#7F7F7F7F" bordercolor="#FF768D9B" bordersize="1">
+        <TabLayout name="switch">
+          <HorizontalLayout>
+            <!-- 虚宝 -->
+            <VItemsSend />
+          </HorizontalLayout>
+          <HorizontalLayout>
+              <!-- 玩家管理 -->
+              <Accounts />
+          </HorizontalLayout>
+          <HorizontalLayout>
+            <Text text="VIP服务" pos="335, 180, 600, 300" relativepos="50,50,0,0"  float="true" font="4" />
+          </HorizontalLayout>
+          <HorizontalLayout>
+            <Text text="赤壁奖励" pos="335, 180, 600, 300" relativepos="50,50,0,0"  float="true" font="4" />
+          </HorizontalLayout>
+          <HorizontalLayout>
+            <Text text="国战英雄" pos="335, 180, 600, 300" relativepos="50,50,0,0"  float="true" font="4" />
+          </HorizontalLayout>
+          <HorizontalLayout>
+            <Text text="国战军团" pos="335, 180, 600, 300" relativepos="50,50,0,0"  float="true" font="4" />
+          </HorizontalLayout>
+          <HorizontalLayout>
+            <Text text="摆摊奖励" pos="335, 180, 600, 300" relativepos="50,50,0,0"  float="true" font="4" />
+          </HorizontalLayout>
+          <HorizontalLayout>
+            <Text text="高级工具" pos="335, 180, 600, 300" relativepos="50,50,0,0"  float="true" font="4" />
+          </HorizontalLayout>
+        </TabLayout>
+      </HorizontalLayout>
+      <Control width="5"/>
+    </HorizontalLayout>
+    <HorizontalLayout height="24">
+      <Text text="{c #386382}主程序版本：2.0.0.2017{/c}" pos="0, 5, 200, 24" float="true" showhtml="true"/>
+      <Text text="{c #386382}版权所有 2015-2017 皇朝霸业工作室     Copyright 2015-2017 by www.52hcby.com   All Rights Reserved－保留所有权利。{/c}" pos="155, 5, 1000, 24" float="true" showhtml="true"/>
+    </HorizontalLayout>
+  </VerticalLayout>
+</Window>
