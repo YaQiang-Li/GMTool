@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Window>
     <HorizontalLayout inset="1,1,1,1">
-        <VerticalLayout width="200" inset="1,1,1,1">
+        <VerticalLayout width="310" inset="1,1,1,1">
             <List name="accountslist" bkcolor="#7F7F7F7F" inset="0,0,0,0" itemshowhtml="true" bordercolor="#FF768D9B" bordersize="1" vscrollbar="true" hscrollbar="true" headerbkimage="file='list_header_bg.png'" itemalign="center" itembkcolor="#FFE2DDDF" itemaltbk="true" hscrollbar="false" menu="true">
     			<ListHeader height="24" menu="true">
-    				<ListHeaderItem text="注册帐号" font="1" textcolor="#3385FF" width="85" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+    				<ListHeaderItem text="注册帐号" font="1" textcolor="#3385FF" width="70" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
     				<ListHeaderItem text="角色名称" font="1" textcolor="#3385FF" width="*" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+                    <ListHeaderItem text="代币" font="1" textcolor="#3385FF" width="60" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
+                    <ListHeaderItem text="游戏币" font="1" textcolor="#3385FF" width="60" hotimage="file='list_header_hot.png'" pushedimage="file='list_header_pushed.png'" sepimage="file='list_header_sep.png'" sepwidth="1"/>
     			</ListHeader>
     		</List>
             <HorizontalLayout height="25">
@@ -14,8 +16,8 @@
         </VerticalLayout>
 
         <VerticalLayout>
-            <HorizontalLayout height="25" inset="1,1,0,0">
-                <Edit name="searchEdit" textcolor="#7F7F7F7F" width="400" text="用户名/角色名/物品ID/物品名称" bordersize="1" bordercolor="#FF768D9B"/>
+            <HorizontalLayout height="25" inset="10,3,10,0">
+                <Edit name="searchEdit" textcolor="#7F7F7F7F" width="300" text="用户名/角色名/物品ID/物品名称" bordersize="1" bordercolor="#FF768D9B"/>
                 <Button name="searchButton" text="Search" textcolor="#000000" hottextcolor="#FFFFFF" focusedtextcolor="#000000" pushedtextcolor="#77a8de" normalimage="file='btn.png' corner='5,11,5,11' source='0,0,96,24'" hotimage="file='btn.png' corner='5,11,5,11' source='0,24,96,48'" pushedimage="file='btn.png' corner='5,11,5,11' source='0,48,96,72'" disabledimage="file='btn.png' corner='5,11,5,11' source='0,72,96,96'"/>
                 <Button name="searchNextButton" text="Next" textcolor="#000000" hottextcolor="#FFFFFF" focusedtextcolor="#000000" pushedtextcolor="#77a8de" normalimage="file='btn.png' corner='5,11,5,11' source='0,0,96,24'" hotimage="file='btn.png' corner='5,11,5,11' source='0,24,96,48'" pushedimage="file='btn.png' corner='5,11,5,11' source='0,48,96,72'" disabledimage="file='btn.png' corner='5,11,5,11' source='0,72,96,96'"/>
             </HorizontalLayout>
@@ -37,7 +39,19 @@
                     </HorizontalLayout>
                     <HorizontalLayout height="25" padding="2,2,2,2">
                         <Text text="角色名:" width="60" padding="0,5,0,0"/>
-                        <Text name="playerName" text="角色名" textcolor="#7F7F7F7F" width="*" padding="0,5,0,0"/>
+                        <Text name="playerName" text="ooxx" textcolor="#7F7F7F7F" width="*" padding="0,5,0,0"/>
+                    </HorizontalLayout>
+                    <HorizontalLayout height="25" padding="2,2,2,2">
+                        <Text text="代币数:" width="60" padding="0,5,0,0"/>
+                        <Text name="accountPoints" text="0" textcolor="#7F7F7F7F" width="*" padding="0,5,0,0"/>
+                        <Text text="游戏币:" width="60" padding="0,5,0,0"/>
+                        <Text name="playerMoney" text="0" textcolor="#7F7F7F7F" width="*" padding="0,5,0,0"/>
+                    </HorizontalLayout>
+                    <HorizontalLayout height="25" inset="2,2,2,2" bkcolor="#FF92DAFD" bkcolor2="#FF74BDF2">
+                        <Text text="模版" width="40" padding="0,5,0,0"/>
+                        <Combo name="chatCombo" normalimage="file='Combo_nor.bmp' corner='2,2,20,2'" hotimage="file='Combo_over.bmp' corner='2,2,20,2'" pushedimage="file='Combo_over.bmp' corner='2,2,20,2'" textpadding="1,1,1,1" >
+    						<ListLabelElement text="模版1" />
+    					</Combo>
                     </HorizontalLayout>
 
                     <HorizontalLayout />

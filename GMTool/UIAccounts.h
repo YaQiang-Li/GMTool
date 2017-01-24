@@ -1,15 +1,18 @@
-#ifndef UIACCOUNTS_H
-#define UIACCOUNTS_H
+#pragma once
 
 #include <windows.h>
 #include "UIlib.h"
 
 using namespace DuiLib;
 
-class AccountsUI : public CContainerUI
+class AccountsUI : public CContainerUI, public INotifyUI
 {
 public:
-	AccountsUI();
-};
+	AccountsUI(CPaintManagerUI *pPM);
+	void DoInit();
+	void Notify(TNotifyUI& msg);
+	void InitDlg();
 
-#endif
+public:
+	CPaintManagerUI* m_pm;
+};

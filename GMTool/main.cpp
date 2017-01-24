@@ -1,7 +1,12 @@
 #include <windows.h>
 #include "UIlib.h"
-#include "UIVItemSend.h"
+
+#include "StringHleper.h"
+#include "TabHelper.h"
+
 #include "UIAccounts.h"
+#include "UIVItemSend.h"
+#include "CWindowBuilderCallbackEx.h"
 
 using namespace DuiLib;
 
@@ -19,17 +24,6 @@ using namespace DuiLib;
 #   endif
 #endif
 
-class CDialogBuilderCallbackEx : public IDialogBuilderCallback
-{
-public:
-	CControlUI* CreateControl(LPCTSTR pstrClass)
-	{
-		if (_tcscmp(pstrClass, _T("VItemsSend")) == 0) return new VItemsSendUI;
-		if (_tcscmp(pstrClass, _T("Accounts")) == 0) return new AccountsUI;
-		return NULL;
-	}
-};
-
 class CDuiFrameWnd : public CWindowWnd, public INotifyUI
 {
 public:
@@ -37,10 +31,10 @@ public:
 
 	void Init()
 	{
-		m_pCloseBtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("closebtn")));
-		m_pMaxBtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("maxbtn")));
-		m_pRestoreBtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("restorebtn")));
-		m_pMinBtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("minbtn")));
+		m_pCloseBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("closebtn")));
+		m_pMaxBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("maxbtn")));
+		m_pRestoreBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("restorebtn")));
+		m_pMinBtn = static_cast<CButtonUI*>(m_PaintManager.FindControl(_T("minbtn")));
 	}
 
 	void OnPrepare() {
@@ -48,8 +42,7 @@ public:
 
 	void Notify(TNotifyUI& msg)
 	{
-		if (msg.sType == _T("windowinit")) OnPrepare();
-		else if (msg.sType == _T("click")) {
+		if (msg.sType == _T("click")) {
 			if (msg.pSender == m_pCloseBtn) {
 				PostQuitMessage(0);
 				return;
@@ -67,7 +60,7 @@ public:
 		else if (msg.sType == _T("selectchanged"))
 		{
 			CDuiString name = msg.pSender->GetName();
-			CTabLayoutUI* pControl = static_cast<CTabLayoutUI*>(m_pm.FindControl(_T("switch")));
+			CTabLayoutUI* pControl = static_cast<CTabLayoutUI*>(m_PaintManager.FindControl(_T("switch")));
 			if (name == _T("vitmes"))
 				pControl->SelectItem(0);
 			else if (name == _T("accounts"))
@@ -92,13 +85,13 @@ public:
 		LONG styleValue = ::GetWindowLong(*this, GWL_STYLE);
 		styleValue &= ~WS_CAPTION;
 		::SetWindowLong(*this, GWL_STYLE, styleValue | WS_CLIPSIBLINGS | WS_CLIPCHILDREN);
-		m_pm.Init(m_hWnd);
+		m_PaintManager.Init(m_hWnd);
 		CDialogBuilder builder;
-		CDialogBuilderCallbackEx cb;
-		CControlUI* pRoot = builder.Create(_T("skin.xml"), (UINT)0, &cb, &m_pm);
+		CWindowBuilderCallbackEx cb(&m_PaintManager);
+		CControlUI* pRoot = builder.Create(_T("skin.xml"), (UINT)0, &cb, &m_PaintManager);
 		ASSERT(pRoot && "Failed to parse XML");
-		m_pm.AttachDialog(pRoot);
-		m_pm.AddNotifier(this);
+		m_PaintManager.AttachDialog(pRoot);
+		m_PaintManager.AddNotifier(this);
 		Init();
 		return 0;
 	}
@@ -141,7 +134,7 @@ public:
 		::GetClientRect(*this, &rcClient);
 
 		if (!::IsZoomed(*this)) {
-			RECT rcSizeBox = m_pm.GetSizeBox();
+			RECT rcSizeBox = m_PaintManager.GetSizeBox();
 			if (pt.y < rcClient.top + rcSizeBox.top) {
 				if (pt.x < rcClient.left + rcSizeBox.left) return HTTOPLEFT;
 				if (pt.x > rcClient.right - rcSizeBox.right) return HTTOPRIGHT;
@@ -156,10 +149,10 @@ public:
 			if (pt.x > rcClient.right - rcSizeBox.right) return HTRIGHT;
 		}
 
-		RECT rcCaption = m_pm.GetCaptionRect();
+		RECT rcCaption = m_PaintManager.GetCaptionRect();
 		if (pt.x >= rcClient.left + rcCaption.left && pt.x < rcClient.right - rcCaption.right \
 			&& pt.y >= rcCaption.top && pt.y < rcCaption.bottom) {
-			CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(pt));
+			CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(pt));
 			if (pControl && _tcscmp(pControl->GetClass(), DUI_CTR_BUTTON) != 0 &&
 				_tcscmp(pControl->GetClass(), DUI_CTR_OPTION) != 0 &&
 				_tcscmp(pControl->GetClass(), DUI_CTR_TEXT) != 0)
@@ -171,7 +164,7 @@ public:
 
 	LRESULT OnSize(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 	{
-		SIZE szRoundCorner = m_pm.GetRoundCorner();
+		SIZE szRoundCorner = m_PaintManager.GetRoundCorner();
 		if (!::IsIconic(*this) && (szRoundCorner.cx != 0 || szRoundCorner.cy != 0)) {
 			CDuiRect rcWnd;
 			::GetWindowRect(*this, &rcWnd);
@@ -220,15 +213,15 @@ public:
 		LRESULT lRes = CWindowWnd::HandleMessage(uMsg, wParam, lParam);
 		if (::IsZoomed(*this) != bZoomed) {
 			if (!bZoomed) {
-				CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("maxbtn")));
+				CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("maxbtn")));
 				if (pControl) pControl->SetVisible(false);
-				pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("restorebtn")));
+				pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("restorebtn")));
 				if (pControl) pControl->SetVisible(true);
 			}
 			else {
-				CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("maxbtn")));
+				CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("maxbtn")));
 				if (pControl) pControl->SetVisible(true);
-				pControl = static_cast<CControlUI*>(m_pm.FindControl(_T("restorebtn")));
+				pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(_T("restorebtn")));
 				if (pControl) pControl->SetVisible(false);
 			}
 		}
@@ -255,7 +248,7 @@ public:
 			bHandled = FALSE;
 		}
 		if (bHandled) return lRes;
-		if (m_pm.MessageHandler(uMsg, wParam, lParam, lRes))
+		if (m_PaintManager.MessageHandler(uMsg, wParam, lParam, lRes))
 		{
 			return lRes;
 		}
@@ -263,15 +256,14 @@ public:
 		return __super::HandleMessage(uMsg, wParam, lParam);
 	}
 
-protected:
-	CPaintManagerUI m_pm;
+public:
+	CPaintManagerUI m_PaintManager;
 
-private:
 	CButtonUI* m_pCloseBtn;
 	CButtonUI* m_pMaxBtn;
 	CButtonUI* m_pRestoreBtn;
 	CButtonUI* m_pMinBtn;
-	CButtonUI* m_pSearch;
+	CButtonUI* m_pSendBtn;
 };
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int nCmdShow)
@@ -283,11 +275,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPSTR /*l
 	HRESULT Hr = ::CoInitialize(NULL);
 	if (FAILED(Hr)) return 0;
 
-	CDuiFrameWnd *duiFrame = new CDuiFrameWnd();
-	duiFrame->Create(NULL, _T("GMTool"), UI_WNDSTYLE_FRAME, 0L, 0, 0, 800, 572);
-	//duiFrame.Create(NULL, _T("DUIWnd"), UI_WNDSTYLE_FRAME, WS_EX_WINDOWEDGE);
-	duiFrame->CenterWindow();
-	::ShowWindow(*duiFrame, SW_SHOW);
+	CDuiFrameWnd *GmToolFrame = new CDuiFrameWnd();
+	GmToolFrame->Create(NULL, _T("GMTool"), UI_WNDSTYLE_FRAME, 0L, 0, 0, 1000, 715);
+	GmToolFrame->CenterWindow();
+	::ShowWindow(*GmToolFrame, SW_SHOW);
 	//duiFrame.ShowModal();
 
 	CPaintManagerUI::MessageLoop();

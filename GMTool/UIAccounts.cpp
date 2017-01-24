@@ -1,14 +1,33 @@
+#include "TabHelper.h"
 #include "UIAccounts.h"
 
-AccountsUI::AccountsUI()
+AccountsUI::AccountsUI(CPaintManagerUI *pPM)
 {
-	CDialogBuilder builder;
-	CContainerUI* pComputerExamine = static_cast<CContainerUI*>(builder.Create(_T("accounts.xml"), (UINT)0));
-	if (pComputerExamine) {
-		this->Add(pComputerExamine);
-	}
-	else {
-		this->RemoveAll();
+	m_pm = pPM;
+}
+
+void AccountsUI::DoInit()
+{
+// 	if (!CreateBuilder(m_pm, this, _T("accounts.xml")))
+// 		return;
+// 
+// 	InitDlg();
+}
+
+void AccountsUI::Notify(TNotifyUI& msg)
+{
+	if (!this->IsVisible())
 		return;
+
+	if (_tcsicmp(msg.sType, _T("click")) == 0)
+	{
+// 		if (msg.pSender = m_pSendBtn)
+// 		{
+// 			OutputDebugString("Click m_pSendBtn\n\n");
+// 		}
 	}
+}
+
+void AccountsUI::InitDlg()
+{
 }

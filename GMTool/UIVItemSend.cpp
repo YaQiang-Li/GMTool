@@ -1,14 +1,39 @@
+#include "TabHelper.h"
 #include "UIVItemSend.h"
+#include "CWindowBuilderCallbackEx.h"
 
-VItemsSendUI::VItemsSendUI()
+using namespace DuiLib;
+
+VItemsSendUI::VItemsSendUI(CPaintManagerUI *pPM)
 {
-	CDialogBuilder builder;
-	CContainerUI* pComputerExamine = static_cast<CContainerUI*>(builder.Create(_T("v_items.xml"), (UINT)0));
-	if (pComputerExamine) {
-		this->Add(pComputerExamine);
-	}
-	else {
-		this->RemoveAll();
+	
+	m_pm = pPM;
+	m_pSendBtn = NULL;
+}
+
+void VItemsSendUI::DoInit()
+{
+	if (!CreateBuilder(m_pm, this, _T("v_items.xml")))
 		return;
+
+	InitDlg();
+}
+
+void VItemsSendUI::Notify(TNotifyUI& msg)
+{
+	if (!this->IsVisible())
+		return;
+
+	if (_tcsicmp(msg.sType, _T("click")) == 0)
+	{
+		if (msg.pSender == m_pSendBtn)
+		{
+			OutputDebugString("Click m_pSendBtn\n\n");
+		}
 	}
+}
+
+void VItemsSendUI::InitDlg()
+{
+	m_pSendBtn = static_cast<CButtonUI*>(m_pm->FindControl(_T("sendVItems")));
 }

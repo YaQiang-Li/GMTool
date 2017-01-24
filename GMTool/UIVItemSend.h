@@ -1,15 +1,19 @@
-#ifndef UIVITEMSEND_H
-#define UIVITEMSEND_H
+#pragma once
 
 #include <windows.h>
 #include "UIlib.h"
 
 using namespace DuiLib;
 
-class VItemsSendUI : public CContainerUI
+class VItemsSendUI : public CContainerUI, public INotifyUI
 {
 public:
-	VItemsSendUI();
-};
+	VItemsSendUI(CPaintManagerUI *pPM);
+	void DoInit();
+	void Notify(TNotifyUI& msg);
+	void InitDlg();
 
-#endif
+public:
+	CPaintManagerUI* m_pm;
+	CButtonUI* m_pSendBtn;
+};

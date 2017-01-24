@@ -32,5 +32,29 @@
     <ClInclude Include="UIAccounts.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CWindowBuilderCallbackEx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TabHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StringHleper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SQLiteHleper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SQLServerHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GetGameDbHleper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GetGameResHleper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonDefine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
